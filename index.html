@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStore - Toko Game Online Terlengkap</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-xxxxxxxxxx"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-gamepad"></i>
+                <span>GameStore</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Beranda</a></li>
+                <li><a href="#games">Game</a></li>
+                <li><a href="#categories">Kategori</a></li>
+                <li><a href="#deals">Promo</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Cari game..." id="searchInput">
+                    <i class="fas fa-search"></i>
+                </div>
+                <button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="login-btn" onclick="toggleLogin()">Masuk</button>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="badge">🔥 Promo Spesial</span>
+                <h1>Jelajahi Dunia Game Tanpa Batas</h1>
+                <p>Temukan ribuan game PC, console, dan voucher game dengan harga terbaik. Pengiriman instan dan garansi resmi.</p>
+                <div class="hero-buttons">
+                    <a href="#games" class="btn btn-primary">Jelajahi Game</a>
+                    <a href="#deals" class="btn btn-secondary">Lihat Promo</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Game Tersedia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100K+</span>
+                        <span class="stat-label">Pelanggan Puas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Dukungan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800" alt="Gaming Setup">
+            </div>
+        </div>
+        <div class="hero-gradient"></div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <h2 class="section-title">Kategori Populer</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="filterByCategory('action')">
+                    <div class="category-icon">
+                        <i class="fas fa-crosshairs"></i>
+                    </div>
+                    <h3>Action</h3>
+                    <span>1,200+ Game</span>
+                </div>
+                <div class="category-card" onclick="filterByCategory('adventure')">
+                    <div class="category-icon">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3>Adventure</h3>
+                    <span>800+ Game</span>
+                </div>
+                <div class="category-card" onclick="filterByCategory('rpg')">
+                    <div class="category-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3>RPG</h3>
+                    <span>600+ Game</span>
+                </div>
+                <div class="category-card" onclick="filterByCategory('sports')">
+                    <div class="category-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <span>400+ Game</span>
+                </div>
+                <div class="category-card" onclick="filterByCategory('strategy')">
+                    <div class="category-icon">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <h3>Strategy</h3>
+                    <span>350+ Game</span>
+                </div>
+                <div class="category-card" onclick="filterByCategory('simulation')">
+                    <div class="category-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Simulation</h3>
+                    <span>500+ Game</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games Section -->
+    <section id="games" class="games-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Game Terlaris</h2>
+                <div class="filter-tabs">
+                    <button class="tab-btn active" onclick="filterGames('all')">Semua</button>
+                    <button class="tab-btn" onclick="filterGames('pc')">PC</button>
+                    <button class="tab-btn" onclick="filterGames('console')">Console</button>
+                    <button class="tab-btn" onclick="filterGames('mobile')">Mobile</button>
+                </div>
+            </div>
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be loaded dynamically -->
+            </div>
+            <div class="load-more">
+                <button class="btn btn-outline" onclick="loadMoreGames()">Muat Lebih Banyak</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deals Section -->
+    <section id="deals" class="deals-section">
+        <div class="container">
+            <div class="deals-header">
+                <div>
+                    <h2 class="section-title">⚡ Flash Sale</h2>
+                    <p class="deals-subtitle">Diskon hingga 70% - Berakhir dalam:</p>
+                </div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span id="hours">12</span>
+                        <label>Jam</label>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes">45</span>
+                        <label>Menit</label>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds">30</span>
+                        <label>Detik</label>
+                    </div>
+                </div>
+            </div>
+            <div class="deals-grid" id="dealsGrid">
+                <!-- Deals will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Pengiriman Instan</h3>
+                    <p>Key game dikirim otomatis ke email Anda dalam hitungan detik setelah pembayaran.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garansi Resmi</h3>
+                    <p>Semua produk bergaransi resmi dan 100% original dari publisher.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Dukungan 24/7</h3>
+                    <p>Tim support kami siap membantu Anda kapan saja, 24 jam sehari.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>Harga Terbaik</h3>
+                    <p>Jaminan harga termurah dengan diskon dan promo menarik setiap hari.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h2>Dapatkan Update & Promo Eksklusif</h2>
+                    <p>Berlangganan newsletter kami untuk mendapatkan info game terbaru dan diskon spesial.</p>
+                </div>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" placeholder="Masukkan email Anda" required>
+                    <button type="submit" class="btn btn-primary">Berlangganan</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i class="fas fa-gamepad"></i>
+                        <span>GameStore</span>
+                    </a>
+                    <p>Toko game online terpercaya dengan ribuan game PC, console, dan voucher game.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#games">Game</a></li>
+                        <li><a href="#categories">Kategori</a></li>
+                        <li><a href="#deals">Promo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Bantuan</h4>
+                    <ul>
+                        <li><a href="#">Cara Pembelian</a></li>
+                        <li><a href="#">Pembayaran</a></li>
+                        <li><a href="#">Pengiriman</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@gamestore.com</li>
+                        <li><i class="fas fa-phone"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 GameStore. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fas fa-university"></i>
+                    <i class="fas fa-wallet"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content cart-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h2>
+                <button class="close-btn" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be loaded dynamically -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">Rp 0</span>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="checkout()">Checkout Sekarang</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content login-modal">
+            <button class="close-btn" onclick="toggleLogin()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="login-header">
+                <h2>Masuk ke Akun</h2>
+                <p>Selamat datang kembali di GameStore</p>
+            </div>
+            <form class="login-form" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-options">
+                    <label class="checkbox">
+                        <input type="checkbox">
+                        <span>Ingat saya</span>
+                    </label>
+                    <a href="#" class="forgot-password">Lupa password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+            </form>
+            <div class="login-divider">
+                <span>atau masuk dengan</span>
+            </div>
+            <div class="social-login">
+                <button class="social-btn google">
+                    <i class="fab fa-google"></i>
+                    Google
+                </button>
+                <button class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i>
+                    Facebook
+                </button>
+            </div>
+            <p class="login-footer">Belum punya akun? <a href="#">Daftar sekarang</a></p>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-modal">
+            <div class="modal-header">
+                <h2><i class="fas fa-credit-card"></i> Pembayaran</h2>
+                <button class="close-btn" onclick="closeCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="checkout-content">
+                <div class="checkout-summary">
+                    <h3>Ringkasan Pesanan</h3>
+                    <div id="checkoutItems"></div>
+                    <div class="checkout-total">
+                        <span>Total Pembayaran</span>
+                        <span id="checkoutTotal">Rp 0</span>
+                    </div>
+                </div>
+                <div class="payment-methods-section">
+                    <h3>Metode Pembayaran</h3>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="gopay" checked>
+                            <div class="payment-label">
+                                <i class="fas fa-wallet"></i>
+                                <span>GoPay</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="bank_transfer">
+                            <div class="payment-label">
+                                <i class="fas fa-university"></i>
+                                <span>Transfer Bank</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="credit_card">
+                            <div class="payment-label">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Kartu Kredit</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="dana">
+                            <div class="payment-label">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>DANA</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="processPayment()">
+                    Bayar Sekarang
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Item ditambahkan ke keranjang</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
